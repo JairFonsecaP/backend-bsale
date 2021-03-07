@@ -23,6 +23,5 @@ exports.list = (req, res) => {
     res.status(500).send({
       message: "Error al cargar los categorias",
     });
-    next(err);
   }
 };

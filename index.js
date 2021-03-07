@@ -11,6 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 /*IMPORTA LAS RUTAS*/
+
 app.use("/api", router);
 
 /*ASIGNACION DE PUERTO*/

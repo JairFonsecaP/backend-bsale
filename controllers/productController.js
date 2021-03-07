@@ -29,3 +29,17 @@ exports.search = (req, res) => {
     }
   });
 };
+
+exports.detail = (req, res) => {
+  const id = req.params.id;
+
+  const query = "SELECT * FROM product WHERE id = " + id;
+
+  conection.query(query, (err, rows) => {
+    if (rows.length > 0) {
+      res.status(200).send(rows[0]);
+    } else {
+      res.status(404).send({ message: "Producto no encontrado :(" });
+    }
+  });
+};
