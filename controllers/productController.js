@@ -18,11 +18,6 @@ exports.list = (req, res) => {
       });
     }
   });
-
-  res.status(500).send({
-    message: "Error al cargar los productos",
-  });
-  next(err);
 };
 
 exports.search = (req, res) => {
