@@ -1,7 +1,10 @@
 const express = require("express");
 const router = require("./routes/index");
+const cors = require("cors");
 
 const app = express();
+
+app.use(cors());
 
 /*NECESARIO PARA PODER ENVIAR Y RECIBIR LOS JSON*/
 app.use(express.json());
