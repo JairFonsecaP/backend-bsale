@@ -25,7 +25,6 @@ exports.search = (req, res) => {
   const query = "SELECT * FROM product WHERE name LIKE '%" + search + "%'";
   conection.query(query, (err, rows) => {
     if (rows) {
-      console.log(rows);
       res.status(200).send(rows);
     }
   });
