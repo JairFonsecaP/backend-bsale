@@ -21,7 +21,10 @@ exports.list = (req, res) => {
 };
 
 exports.search = (req, res) => {
-  const search = req.params.query;
+  let search = req.params.query.split("+");
+
+  search = search.reduce((a, c) => a + c + " ", "").slice(0, -1);
+
   const query = "SELECT * FROM product WHERE name LIKE '%" + search + "%'";
   conection.query(query, (err, rows) => {
     if (rows) {
@@ -32,7 +35,6 @@ exports.search = (req, res) => {
 
 exports.detail = (req, res) => {
   const id = req.params.id;
-
   const query = "SELECT * FROM product WHERE id = " + id;
 
   conection.query(query, (err, rows) => {

@@ -5,7 +5,9 @@ const config = require("../config/config");
 /**CONEXIÓN A DB*/
 const conection = mysql.createConnection(config);
 conection.connect((err) => {
-  if (err) throw err;
+  if (err) {
+    throw err
+  }
 });
 
 exports.list = (req, res) => {
