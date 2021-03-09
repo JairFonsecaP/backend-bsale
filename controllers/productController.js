@@ -1,13 +1,17 @@
 const mysql = require("mysql");
-
 const config = require("../config/config");
 
 /**CONEXIÓN A DB*/
 const conection = mysql.createConnection(config);
 conection.connect((err) => {
-  if (err) throw err;
+  if (err) {
+    throw err;
+  }
 });
 
+/** *
+ * EL METODO LIST DEVUELVE TODOS LOS PRODUCTOS QUE HAY EN LA BASE DE DATOS
+ */
 exports.list = (req, res) => {
   conection.query("SELECT * FROM product", (err, rows) => {
     if (rows) {
@@ -20,6 +24,11 @@ exports.list = (req, res) => {
   });
 };
 
+/**
+ *HACE LA CONSULTA A LA BASE DE DATOS DIRECTAMENTE CON LA BUSQUEDA
+ *SI ES MÁS DE UNA PALABRA DEBEN IR SEPARADOS POR UN +
+ * @param {QUERY} req
+ */
 exports.search = (req, res) => {
   let search = req.params.query.split("+");
 
@@ -33,6 +42,11 @@ exports.search = (req, res) => {
   });
 };
 
+/**
+ *RECIBE UN ID POR PARAMETROS DE URL
+ * @param {ID} req
+ * @param {PRODUCTO QUE COINCIDA CON EL ID} res
+ */
 exports.detail = (req, res) => {
   const id = req.params.id;
   const query = "SELECT * FROM product WHERE id = " + id;
